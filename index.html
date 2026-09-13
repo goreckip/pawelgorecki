@@ -87,6 +87,14 @@
       letter-spacing: -0.02em;
     }
 
+    .nav-title {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-light);
+      margin-left: 8px;
+      letter-spacing: 0.01em;
+    }
+
     .nav-logo span { color: var(--accent); }
 
     .nav-links { display: flex; gap: 32px; align-items: center; }
@@ -1509,14 +1517,13 @@
   <!-- HEADER -->
   <header class="site-header" id="top">
     <nav class="nav-inner">
-      <div class="nav-logo">Paweł Górecki</div>
+      <div class="nav-logo">Paweł Górecki <span class="nav-title">Product Manager</span></div>
       <div class="nav-links" id="navLinks">
         <a href="#about">About</a>
         <a href="#projects">Experience</a>
         <a href="#side-projects">Side Projects</a>
         <a href="#values">Values</a>
         <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
         <a href="#contact" class="nav-cta">Contact</a>
       </div>
       <button class="nav-mobile-toggle" onclick="toggleMobileNav()" aria-label="Toggle menu">
@@ -1534,9 +1541,9 @@
           that <span class="accent">actually ship.</span>
         </h1>
         <p class="hero-sub">
-          Product Manager with 10+ years turning complex problems into working
-          solutions — from enterprise AI platforms at PwC and Novo Nordisk to
-          a service app that runs my family's business.
+          Product Manager with 10+ years of shipping products across industries
+          and borders. Enterprise AI, data platforms, web applications, automation,
+          and process optimization at global companies.
         </p>
         <div class="hero-actions">
           <a href="#projects" class="btn btn-primary">See my work</a>
@@ -1556,17 +1563,18 @@
         <div class="section-label">About</div>
         <h2 class="section-title">Strategy meets execution.</h2>
         <p>
-          I'm a Product Manager who's spent a decade bridging the gap between
-          what leadership wants and what engineering delivers. My career has
-          moved from ERP consulting through banking automation to enterprise AI —
-          each step adding a layer of complexity and a broader perspective.
+          I'm a Product Manager with a decade of bridging business and
+          engineering. I started in sales, moved through consulting and business
+          analysis, and found my place in product management. Each step across
+          a new industry added a layer of complexity and a broader perspective.
         </p>
         <p>
-          What sets me apart: I don't just write roadmaps. I've built production
-          apps myself, designed multi-agent AI systems, and migrated data from
-          systems older than some of my team members. I understand what I'm
-          asking engineering to build because I've done versions of it with my
-          own hands.
+          What sets me apart: I don't just write roadmaps. I think about users
+          first and the value every decision delivers. I can take a company
+          vision, turn it into product strategy, and break it down into concrete
+          features and tasks. I lead teams by creating clarity so people can do
+          their best work. Years of process thinking taught me to see connections
+          and gaps that others overlook.
         </p>
       </div>
     </div>
@@ -2477,7 +2485,12 @@
     function scrollTestimonials(direction) {
       const container = document.getElementById('testimonialsScroll');
       const cardWidth = container.querySelector('.testimonial-card').offsetWidth + 20;
-      container.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+      const maxScroll = container.scrollWidth - container.clientWidth;
+      const newScroll = container.scrollLeft + (direction * cardWidth);
+      
+      // Clamp to bounds
+      const clamped = Math.max(0, Math.min(newScroll, maxScroll));
+      container.scrollTo({ left: clamped, behavior: 'smooth' });
     }
 
     /* ============================================
